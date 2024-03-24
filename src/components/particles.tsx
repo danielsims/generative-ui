@@ -20,8 +20,8 @@ export const Particles = () => {
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1.5 }} // Adjust the duration according to your preference
-            className="relative w-16 h-16 flex justify-center items-center blur-sm brightness-125 mx-2"
+            transition={{ duration: 1.5 }}
+            className="relative w-16 h-16 flex justify-center items-center blur-sm brightness-125 m-2"
         >
             <motion.div
                 className="absolute"
