@@ -6,7 +6,7 @@ import { Particles } from './particles'
 export const ChatInput = () => {
 
     const [placeholder, setPlaceholder] = useState('What do you need?')
-    const [state, setState] = useState<'idle'|'focus'|'input'|'loading'|'error'>('idle')
+    const [state, setState] = useState<'idle'|'focus'|'typing'|'loading'|'error'>('idle')
 
     const onFocus = () => {
         // Wipe placeholder content to left on focus, animate to flashing text caret
