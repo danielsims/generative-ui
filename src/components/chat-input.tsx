@@ -11,7 +11,7 @@ export const ChatInput = () => {
     const onFocus = () => {
         // Wipe placeholder content to left on focus, animate to flashing text caret
         setPlaceholder('')
-        setState('loading')
+        setState('focus')
     }
 
     const onBlur = () => {
