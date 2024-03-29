@@ -1,4 +1,5 @@
 import type { State } from "./chat-input";
+import { motion } from "framer-motion";
 
 interface StateToggleProps {
     states: readonly State[];
@@ -13,10 +14,21 @@ interface StateToggleProps {
           <button
             key={state}
             onClick={() => onStateChange(state)}
-            className={`px-3 py-1 rounded-full cursor-pointer text-sm ${
-              activeState === state ? 'bg-white text-black' : 'text-[#888] hover:bg-[#333] hover:text-white'
-            }`}
+            className={`${
+                state === activeState ? "" : "hover:text-white/60"
+            } relative rounded-full px-3 py-1 text-sm font-medium text-white transition`}
+            style={{
+                WebkitTapHighlightColor: 'transparent',
+            }}
           >
+            {activeState === state && (
+                <motion.span
+                    layoutId="active-state"
+                    className="absolute inset-0 z-10 bg-white mix-blend mix-blend-difference"
+                    style={{ borderRadius: 9999 }}
+                    transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
+                />
+            )}
             {state.charAt(0).toUpperCase() + state.slice(1)}
           </button>
         ))}
