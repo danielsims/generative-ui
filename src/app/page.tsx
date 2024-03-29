@@ -9,11 +9,14 @@ import { type State, states } from "../components/chat-input"
 
 export default function Home() {
 
-  const [currentState, setCurrentState] = useState<State>("idle");
+  const [controlledState, setControlledState] = useState<State | undefined>("idle");
 
   return (
     <main className="flex min-h-screen h-screen flex-col items-center justify-center p-8 bg-[#101010]">
-      <ChatInput state={currentState} />
+      <ChatInput
+        controlledState={controlledState}
+        onStateChange={(newState) => setControlledState(newState)}
+      />
       <div className="flex flex-col justify-start my-24 mx-auto w-[650px] max-w-full">
         <p className="text-white font-light text-sm mb-2 tracking-wide">Chat Input</p>
         <p className="text-[#888] font-light text-sm tracking-wide">A chat input for interacting with language models. Subtle animations indicate the current state of the model.</p>
@@ -21,12 +24,13 @@ export default function Home() {
         <div className="flex flex-row flex-wrap justify-between text-white">
 
           <StateToggle
-            states={states}
-            activeState={currentState}
-            onStateChange={setCurrentState}
+            states={states as readonly State[]}
+            activeState={controlledState ?? 'idle'}
+            onStateChange={setControlledState}
           />
 
-          <div className="flex justify-end">
+          <div className="flex justify-end items-center gap-4 tracking-wide">
+            <span className='text-xs font-light'>Built by danielsims</span>
             <Link href={'https://github.com/danielsims/chat-ui'}><FaGithub className="text-white fill-white" size={24} /></Link>
           </div>
         </div>

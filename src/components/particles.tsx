@@ -13,8 +13,8 @@ export const Particles = ({ state }: ParticlesProps) => {
         const animateParticles = async () => {
             if (state === 'focus') {
                 await Promise.all([
-                    controls1.start({ scale: 0.4, transition: { duration: 0.3 } }),
-                    controls2.start({ scale: 0.4, transition: { duration: 0.3 } })
+                    controls1.start({ scale: [0.4,0.6,0.65,0.5,0.4], transition: { duration: 0.8, ease: "linear", delay: 0.2 } }),
+                    controls2.start({ scale: [0.4,0.6,0.45,0.4], transition: { duration: 0.8, ease: "linear"} })
                 ]);
                 controls1.start({ scale: [0.4, 0.55, 0.4], transition: { repeat: Infinity, duration: 2, ease: "easeInOut" } });
                 controls2.start({ scale: [0.4, 0.55, 0.4], transition: { repeat: Infinity, duration: 2, delay: 0.5, ease: "easeInOut" } });
