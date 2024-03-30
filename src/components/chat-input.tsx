@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 import { Particles } from './particles';
 
-// Define props interface for better type checking
 interface ChatInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+    value: string;
+    placeholder: string;
     controlledState?: State;
     onStateChange?: (state: State) => void;
 }
@@ -11,8 +12,10 @@ interface ChatInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 export const states = ['idle', 'focus', 'typing', 'loading', 'error'] as const;
 export type State = typeof states[number];
 
-export const ChatInput = ({ controlledState, onStateChange, ...rest }: ChatInputProps) => {
+export const ChatInput = ({ value, placeholder, controlledState,  onStateChange, ...rest }: ChatInputProps) => {
+
     const [internalState, setInternalState] = useState<State>('idle');
+    const [internalPlaceholder, setInternalPlaceholder] = useState<string>(placeholder);
     const currentState = controlledState || internalState;
 
     const changeState = useCallback((newState: State) => {
@@ -26,8 +29,16 @@ export const ChatInput = ({ controlledState, onStateChange, ...rest }: ChatInput
         changeState('focus');
     }, 900);
 
-    const handleFocus = useCallback(() => changeState('focus'), [changeState]);
-    const handleBlur = useCallback(() => changeState('idle'), [changeState]);
+    const handleFocus = () => {
+        setInternalPlaceholder(''); 
+        changeState('focus');
+    };
+
+    const handleBlur = () => {
+        setInternalPlaceholder(placeholder);
+        changeState('idle');
+    };
+
     const handleInput = useCallback(() => {
         changeState('typing');
         debouncedTypingToFocus();
@@ -37,6 +48,7 @@ export const ChatInput = ({ controlledState, onStateChange, ...rest }: ChatInput
         onFocus: handleFocus,
         onBlur: handleBlur,
         onInput: handleInput,
+        placeholder: internalPlaceholder,
         ...rest
     };
 

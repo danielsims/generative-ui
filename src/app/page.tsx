@@ -14,6 +14,8 @@ export default function Home() {
   return (
     <main className="flex min-h-screen h-screen flex-col items-center justify-center p-8 bg-[#101010]">
       <ChatInput
+        value=""
+        placeholder={"What do you need?"}
         controlledState={controlledState}
         onStateChange={(newState) => setControlledState(newState)}
       />
