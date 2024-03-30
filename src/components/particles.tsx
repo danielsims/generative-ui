@@ -47,7 +47,6 @@ interface ParticlesProps {
     state: State;
 }
 
-// @ts-ignore
 const particleConfig: Record<State, ParticleConfig> = {
     idle: {
         particles: [

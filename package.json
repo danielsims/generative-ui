@@ -18,7 +18,8 @@
     "react-dom": "^18",
     "react-icons": "^5.0.1",
     "react-tsparticles": "^2.12.2",
-    "tsparticles": "^3.3.0"
+    "tsparticles": "^3.3.0",
+    "use-debounce": "^10.0.0"
   },
   "devDependencies": {
     "@types/node": "^20",
