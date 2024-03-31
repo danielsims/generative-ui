@@ -1,3 +1,3 @@
-# chat-ui
+# generative-ui
 
-A collection of components for building chat interfaces
+A collection of components for building generative interfaces
