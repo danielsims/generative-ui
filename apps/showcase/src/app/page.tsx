@@ -1,11 +1,11 @@
 "use client"
 
 import { useState } from 'react';
-import { ChatInput } from "@/components/chat-input";
 import { FaGithub } from "react-icons/fa"
 import { StateToggle } from "../components/state-toggle"
 import Link from "next/link";
-import { type State, states } from "../components/chat-input"
+import { ChatInput, states } from "../components/chat-input";
+import type { State } from "../components/chat-input"
 
 export default function Home() {
 
