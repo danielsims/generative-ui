@@ -1,3 +1,4 @@
+import type { ChangeEvent } from 'react';
 import React, { useState, useCallback } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 import { Particles } from './particles';
@@ -6,17 +7,18 @@ interface ChatInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     value: string;
     placeholder: string;
     controlledState?: State;
+    onChange: (event: ChangeEvent<HTMLInputElement>) => void;
     onStateChange?: (state: State) => void;
 }
 
 export const states = ['idle', 'focus', 'typing', 'loading', 'error'] as const;
 export type State = typeof states[number];
 
-export const ChatInput = ({ value, placeholder, controlledState,  onStateChange, ...rest }: ChatInputProps) => {
+export const ChatInput = ({ value, placeholder, controlledState, onChange, onStateChange, ...rest }: ChatInputProps) => {
 
     const [internalState, setInternalState] = useState<State>('idle');
     const [internalPlaceholder, setInternalPlaceholder] = useState<string>(placeholder);
-    const currentState = controlledState || internalState;
+    const currentState = controlledState ?? internalState;
 
     const changeState = useCallback((newState: State) => {
         if (controlledState === undefined) {
@@ -45,11 +47,13 @@ export const ChatInput = ({ value, placeholder, controlledState,  onStateChange,
     }, [changeState, debouncedTypingToFocus]);
 
     const inputProps = {
+        value: value,
+        placeholder: internalPlaceholder,
         onFocus: handleFocus,
         onBlur: handleBlur,
         onInput: handleInput,
-        placeholder: internalPlaceholder,
-        ...rest
+        onChange: onChange,
+        ...rest,
     };
 
     return (

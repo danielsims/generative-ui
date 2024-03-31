@@ -307,44 +307,44 @@ export const Particles = ({ state }: ParticlesProps) => {
             if (state) {
                 await Promise.all([
                     controls1.start({ 
-                        scale: particleConfig[state].particles[0].entry.scale,
-                        boxShadow: `0 0 15px 5px ${particleConfig[state].particles[0].glow}`,
+                        scale: particleConfig[state]?.particles[0]?.entry.scale,
+                        boxShadow: `0 0 15px 5px ${particleConfig[state]?.particles[0]?.glow}`,
                         transition: { 
-                            duration: particleConfig[state].particles[0].entry.duration,
-                            ease: particleConfig[state].particles[0].entry.ease
+                            duration: particleConfig[state]?.particles[0]?.entry.duration,
+                            ease: particleConfig[state]?.particles[0]?.entry.ease
                     }}),
                     controls2.start({ 
-                        scale: particleConfig[state].particles[1].entry.scale,
-                        boxShadow: `0 0 15px 5px ${particleConfig[state].particles[1].glow}`,
+                        scale: particleConfig[state]?.particles[1]?.entry.scale,
+                        boxShadow: `0 0 15px 5px ${particleConfig[state]?.particles[1]?.glow}`,
                         transition: { 
-                            duration: particleConfig[state].particles[1].entry.duration,
-                            ease: particleConfig[state].particles[1].entry.ease
+                            duration: particleConfig[state]?.particles[1]?.entry.duration,
+                            ease: particleConfig[state]?.particles[1]?.entry.ease
                     }})
                 ])
                 controls1.start({ 
-                    scale: particleConfig[state].particles[0].transition.scale,
-                    boxShadow: `0 0 15px 5px ${particleConfig[state].particles[0].glow}`,
+                    scale: particleConfig[state]?.particles[0]?.transition.scale,
+                    boxShadow: `0 0 15px 5px ${particleConfig[state]?.particles[0]?.glow}`,
                     transition: {
-                        duration: particleConfig[state].particles[0].transition.duration,
-                        ease: particleConfig[state].particles[0].transition.ease,
-                        repeat: particleConfig[state].particles[0].transition.repeat,
-                        delay: particleConfig[state].particles[0].transition.delay,
+                        duration: particleConfig[state]?.particles[0]?.transition.duration,
+                        ease: particleConfig[state]?.particles[0]?.transition.ease,
+                        repeat: particleConfig[state]?.particles[0]?.transition.repeat,
+                        delay: particleConfig[state]?.particles[0]?.transition.delay,
                     }
-                });
+                }).catch(error => console.error(error));
                 controls2.start({ 
-                    scale: particleConfig[state].particles[1].transition.scale,
-                    boxShadow: `0 0 15px 5px ${particleConfig[state].particles[1].glow}`,
+                    scale: particleConfig[state]?.particles[1]?.transition.scale,
+                    boxShadow: `0 0 15px 5px ${particleConfig[state]?.particles[1]?.glow}`,
                     transition: {
-                        duration: particleConfig[state].particles[1].transition.duration,
-                        ease: particleConfig[state].particles[1].transition.ease,
-                        repeat: particleConfig[state].particles[1].transition.repeat,
-                        delay: particleConfig[state].particles[1].transition.delay
+                        duration: particleConfig[state]?.particles[1]?.transition.duration,
+                        ease: particleConfig[state]?.particles[1]?.transition.ease,
+                        repeat: particleConfig[state]?.particles[1]?.transition.repeat,
+                        delay: particleConfig[state]?.particles[1]?.transition.delay
                     }
-                });
+                }).catch(error => console.error(error));
             }
         };
 
-        animateParticles();
+        animateParticles().catch(error => console.error(error));
     }, [state, controls1, controls2]);
 
     useEffect(() => {
@@ -367,11 +367,11 @@ export const Particles = ({ state }: ParticlesProps) => {
                     repeat: particleConfig[state].rotation.transition.repeat,
                     ease: "linear",
                 }
-            });
+            }).catch(error => console.error(error));
             setCurrentRotation(currentRotation + 360);
         };
 
-        animateRotation();
+        animateRotation().catch(error => console.error(error));
 
     }, [state, rotationControl, currentRotation])
 
@@ -386,8 +386,8 @@ export const Particles = ({ state }: ParticlesProps) => {
                     initial={{ scale: 0 }}
                     animate={controls1}
                     style={{
-                        background: particleConfig[state].particles[0].background,
-                        boxShadow: `0 0 15px 5px ${particleConfig[state].particles[0].glow}`,                        
+                        background: particleConfig[state]?.particles[0]?.background,
+                        boxShadow: `0 0 15px 5px ${particleConfig[state]?.particles[0]?.glow}`,                        
                         borderRadius: '50%',
                         width: '48px',
                         height: '48px',
@@ -400,8 +400,8 @@ export const Particles = ({ state }: ParticlesProps) => {
                     initial={{ scale: 0 }}
                     animate={controls2}
                     style={{
-                        background: particleConfig[state].particles[1].background,
-                        boxShadow: `0 0 15px 5px ${particleConfig[state].particles[1].glow}`,                        
+                        background: particleConfig[state]?.particles[1]?.background,
+                        boxShadow: `0 0 15px 5px ${particleConfig[state]?.particles[1]?.glow}`,                        
                         borderRadius: '50%',
                         width: '48px',
                         height: '48px',

@@ -9,14 +9,16 @@ import type { State } from "../components/chat-input"
 
 export default function Home() {
 
+  const [controlledValue, setControlledValue] = useState<string>("");
   const [controlledState, setControlledState] = useState<State | undefined>("idle");
 
   return (
     <main className="flex min-h-screen h-screen flex-col items-center justify-center p-8 bg-[#101010]">
       <ChatInput
-        value=""
-        placeholder={"What do you need?"}
+        value={controlledValue}
         controlledState={controlledState}
+        placeholder={"What do you need?"}
+        onChange={(event) => setControlledValue(event.target.value)}
         onStateChange={(newState) => setControlledState(newState)}
       />
       <div className="flex flex-col justify-start my-24 mx-auto w-[650px] max-w-full">
@@ -33,7 +35,7 @@ export default function Home() {
 
           <div className="flex flex-row-reverse md:flex-row justify-end items-center gap-4 tracking-wide w-full md:w-fit">
             <span className='text-xs font-light'>Built by <Link href={'https://twitter.com/danielsims'}>danielsims</Link></span>
-            <Link href={'https://github.com/danielsims/chat-ui'}><FaGithub className="text-white fill-white" size={24} /></Link>
+            <Link href={'https://github.com/danielsims/generative-ui'}><FaGithub className="text-white fill-white" size={24} /></Link>
           </div>
         </div>
       </div>
