@@ -7,13 +7,19 @@ import { Particles } from "./particles";
 interface ChatInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   value: string;
   placeholder: string;
-  controlledState?: State;
+  controlledState?: ChatInputStates;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  onStateChange?: (state: State) => void;
+  onStateChange?: (state: ChatInputStates) => void;
 }
 
-export const states = ["idle", "focus", "typing", "loading", "error"] as const;
-export type State = (typeof states)[number];
+export const chatInputStates = [
+  "idle",
+  "focus",
+  "typing",
+  "loading",
+  "error",
+] as const;
+export type ChatInputStates = (typeof chatInputStates)[number];
 
 export const ChatInput = ({
   value,
@@ -23,13 +29,13 @@ export const ChatInput = ({
   onStateChange,
   ...rest
 }: ChatInputProps) => {
-  const [internalState, setInternalState] = useState<State>("idle");
+  const [internalState, setInternalState] = useState<ChatInputStates>("idle");
   const [internalPlaceholder, setInternalPlaceholder] =
     useState<string>(placeholder);
   const currentState = controlledState ?? internalState;
 
   const changeState = useCallback(
-    (newState: State) => {
+    (newState: ChatInputStates) => {
       if (controlledState === undefined) {
         setInternalState(newState);
       }

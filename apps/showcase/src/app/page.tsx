@@ -1,18 +1,18 @@
 "use client";
 
+import type { ChatInputStates } from "generative-components";
 import { useState } from "react";
 import Link from "next/link";
+import { ChatInput, chatInputStates } from "generative-components";
 import { FaGithub } from "react-icons/fa";
 
-import type { State } from "../components/chat-input";
-import { ChatInput, states } from "../components/chat-input";
 import { StateToggle } from "../components/state-toggle";
 
 export default function Home() {
   const [controlledValue, setControlledValue] = useState<string>("");
-  const [controlledState, setControlledState] = useState<State | undefined>(
-    "idle",
-  );
+  const [controlledState, setControlledState] = useState<
+    ChatInputStates | undefined
+  >("idle");
 
   return (
     <main className="flex h-screen min-h-screen flex-col items-center justify-center bg-[#101010] p-8">
@@ -34,7 +34,7 @@ export default function Home() {
         <hr className="my-16 border-[#333] border-opacity-50" />
         <div className="flex flex-row flex-wrap justify-between gap-16 text-white">
           <StateToggle
-            states={states as readonly State[]}
+            states={chatInputStates as readonly ChatInputStates[]}
             activeState={controlledState ?? "idle"}
             onStateChange={setControlledState}
           />

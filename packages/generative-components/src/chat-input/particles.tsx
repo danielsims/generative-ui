@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
 
-import type { State } from "./chat-input";
+import type { ChatInputStates } from "./chat-input";
 
 interface Particle {
   background: string;
@@ -46,10 +46,10 @@ interface ParticleConfig {
 }
 
 interface ParticlesProps {
-  state: State;
+  state: ChatInputStates;
 }
 
-const particleConfig: Record<State, ParticleConfig> = {
+const particleConfig: Record<ChatInputStates, ParticleConfig> = {
   idle: {
     particles: [
       {

@@ -5,3 +5,5 @@ import { twMerge } from "tailwind-merge";
 const cn = (...inputs: CxOptions) => twMerge(cx(inputs));
 
 export { cn };
+
+export * from "./chat-input/chat-input";

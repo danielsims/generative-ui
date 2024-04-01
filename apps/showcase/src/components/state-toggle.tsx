@@ -1,11 +1,10 @@
+import type { ChatInputStates } from "generative-components";
 import { motion } from "framer-motion";
 
-import type { State } from "./chat-input";
-
 interface StateToggleProps {
-  states: readonly State[];
+  states: readonly ChatInputStates[];
   activeState: string;
-  onStateChange: (newState: State) => void;
+  onStateChange: (newState: ChatInputStates) => void;
 }
 
 export const StateToggle = ({
