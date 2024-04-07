@@ -1,17 +1,11 @@
 {
   "extends": "@generative-ui/tsconfig/base.json",
   "compilerOptions": {
-    "lib": [
-      "es2022",
-      "dom",
-      "dom.iterable"
-    ],
+    "lib": ["es2022", "dom", "dom.iterable"],
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "~/*": [
-        "./src/*"
-      ]
+      "~/*": ["./src/*"]
     },
     "plugins": [
       {
@@ -26,7 +20,5 @@
     ".next/types/**/*.ts",
     "../../packages/generative-components/src/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

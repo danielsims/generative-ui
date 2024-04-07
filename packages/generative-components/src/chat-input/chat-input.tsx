@@ -1,3 +1,5 @@
+"use client";
+
 import type { ChangeEvent } from "react";
 import React, { useCallback, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
