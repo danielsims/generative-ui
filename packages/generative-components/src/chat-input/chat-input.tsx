@@ -76,7 +76,7 @@ export const ChatInput = ({
   };
 
   return (
-    <div className="shadow-inner-shadow-dark-sm flex h-[56px] w-full max-w-2xl items-center justify-center gap-2 overflow-hidden rounded-full bg-[#151515] shadow-lg">
+    <div className="shadow-inner-dark flex h-[56px] w-full max-w-2xl items-center justify-center gap-2 overflow-hidden rounded-full bg-[#151515] shadow-lg">
       <Particles state={currentState} />
       <input
         className="h-full w-full bg-transparent font-mono text-base text-white outline-none placeholder:font-mono placeholder:text-sm placeholder:text-[#A0A0A0] placeholder:md:text-base"
