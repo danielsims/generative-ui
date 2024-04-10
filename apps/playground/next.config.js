@@ -8,6 +8,15 @@ createJiti(fileURLToPath(import.meta.url))("./src/env");
 const config = {
   reactStrictMode: true,
 
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "oaidalleapiprodscus.blob.core.windows.net",
+      },
+    ],
+  },
+
   /** Enables hot reloading for local packages without a build step */
   transpilePackages: ["generative-components"],
 

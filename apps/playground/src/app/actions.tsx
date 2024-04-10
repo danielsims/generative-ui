@@ -20,12 +20,12 @@ interface ImageGenerationResponse {
   ];
 }
 
-async function generateImage(prompt: string, model = "dall-e-3", n = 1) {
+async function generateImage(prompt: string, model = "dall-e-3", count = 1) {
   const response = await openai.images
     .generate({
       model,
       prompt,
-      n,
+      n: count,
     })
     .catch((error) => console.log(error))
     .then((response) => response as ImageGenerationResponse);
@@ -33,6 +33,7 @@ async function generateImage(prompt: string, model = "dall-e-3", n = 1) {
   const images = response.data;
 
   return {
+    model,
     prompt,
     images,
   };
@@ -92,17 +93,22 @@ async function submitUserMessage(userInput: string): Promise<object> {
             prompt: z
               .string()
               .describe("Description of the image to be generated"),
-            n: z
+            model: z
+              .string()
+              .describe(
+                "The model to use for image generation (dall-e-2, dall-e-3)",
+              )
+              .default("dall-e-3"),
+            count: z
               .number()
-              .optional()
-              .default(1)
-              .describe("Number of images to generate"),
+              .describe("Number of images to generate")
+              .default(1),
           })
           .required(),
-        render: async function* ({ prompt, n }) {
-          yield <GenerativeImageSkeleton prompt={prompt} />;
+        render: async function* ({ prompt, count, model }) {
+          yield <GenerativeImageSkeleton prompt={prompt} model={model} />;
 
-          const images = (await generateImage(prompt)).images;
+          const images = (await generateImage(prompt, model, count)).images;
 
           // Update the final AI state.
           aiState.done([
@@ -110,16 +116,20 @@ async function submitUserMessage(userInput: string): Promise<object> {
             {
               role: "function",
               name: "generate_image",
-              content: JSON.stringify({ prompt, images, n }),
+              content: JSON.stringify({ prompt, images, count, model }),
             },
           ]);
 
-          // Return the image component to the client with the generated image URL.
           return (
             <div>
               {Array.isArray(images) &&
                 images.map((image, index) => (
-                  <GenerativeImage key={index} src={image.url} alt={prompt} />
+                  <GenerativeImage
+                    key={index}
+                    src={image.url}
+                    alt={prompt}
+                    model={model}
+                  />
                 ))}
             </div>
           );
