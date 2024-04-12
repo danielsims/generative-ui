@@ -12,7 +12,7 @@ export function Playground() {
   const { submitUserMessage } = useActions<typeof AI>();
 
   return (
-    <div className="flex min-h-screen w-full flex-col p-8">
+    <div className="flex min-h-screen w-full flex-col">
       <div className="mx-auto flex w-full max-w-5xl flex-col gap-6 pb-48 font-light tracking-wide text-white md:p-12">
         {messages.map((message) => (
           <div key={message.id}>{message.display}</div>

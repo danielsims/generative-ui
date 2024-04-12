@@ -106,7 +106,7 @@ async function submitUserMessage(userInput: string): Promise<object> {
           })
           .required(),
         render: async function* ({ prompt, count, model }) {
-          yield <GenerativeImageSkeleton prompt={prompt} model={model} />;
+          yield <GenerativeImageSkeleton />;
 
           const images = (await generateImage(prompt, model, count)).images;
 

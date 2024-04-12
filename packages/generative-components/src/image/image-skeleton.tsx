@@ -1,17 +1,5 @@
-import Caption from "./caption";
-
-export function GenerativeImageSkeleton({
-  model,
-  prompt,
-}: {
-  model: string;
-  prompt: string;
-}) {
+export function GenerativeImageSkeleton() {
   return (
-    <div className="shadow-inner-dark relative flex aspect-square h-auto w-full items-center justify-center rounded-xl border border-[#252525]">
-      <div className="absolute inset-0 flex items-center gap-4 bg-black/20 p-8 transition-all">
-        <Caption model={model} alt={prompt} />
-      </div>
-    </div>
+    <div className="shadow-inner-dark relative flex aspect-square h-auto w-full animate-pulse items-center justify-center rounded-xl bg-[#252525] md:w-[400px]"></div>
   );
 }
