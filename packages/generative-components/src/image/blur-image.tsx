@@ -1,21 +1,21 @@
 "use client";
 
+import type { ImageProps } from "next/image";
 import { useState } from "react";
 import Image from "next/image";
 
-function cn(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
-}
+import { cn } from "../index";
 
 function BlurImage({
   src,
   alt,
   className,
+  ...rest
 }: {
   src: string;
   alt: string;
   className: string;
-}) {
+} & ImageProps) {
   const [isLoading, setLoading] = useState(true);
 
   return (
@@ -32,6 +32,7 @@ function BlurImage({
           : "scale-100 blur-0 grayscale-0",
       )}
       onLoadingComplete={() => setLoading(false)}
+      {...rest}
     />
   );
 }

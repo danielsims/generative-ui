@@ -1,23 +1,42 @@
+import type { ImageProps } from "next/image";
+
+import { cn } from "../index";
 import BlurImage from "./blur-image";
 import Caption from "./caption";
+
+interface GenerativeImageProps extends ImageProps {
+  src: string;
+  alt: string;
+  model: string;
+  controlledState?: GenerativeImageStates;
+}
+
+export const generativeImageStates = ["loading", "default", "hover"] as const;
+export type GenerativeImageStates = (typeof generativeImageStates)[number];
 
 export function GenerativeImage({
   src,
   alt,
   model,
-}: {
-  src: string;
-  alt: string;
-  model: string;
-}) {
+  controlledState,
+  ...rest
+}: GenerativeImageProps) {
   return (
     <div className="shadow-inner-dark group relative aspect-square h-auto w-full overflow-hidden rounded-xl border border-[#252525] md:w-[400px]">
       <BlurImage
         src={src}
         alt={alt}
         className="h-auto w-full max-w-full rounded-xl"
+        {...rest}
       />
-      <div className="absolute inset-0 hidden items-center gap-4 p-4 transition-all group-hover:flex group-hover:bg-black/20">
+      <div
+        className={cn(
+          "absolute inset-0 hidden items-center gap-4 p-4 transition-all",
+          controlledState === "hover"
+            ? "flex bg-black/20"
+            : "group-hover:flex group-hover:bg-black/20",
+        )}
+      >
         <Caption model={model} alt={alt} />
       </div>
     </div>

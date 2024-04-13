@@ -7,5 +7,6 @@ const cn = (...inputs: CxOptions) => twMerge(cx(inputs));
 export { cn };
 
 export * from "./chat-input/chat-input";
+
 export * from "./image/image";
 export * from "./image/image-skeleton";
