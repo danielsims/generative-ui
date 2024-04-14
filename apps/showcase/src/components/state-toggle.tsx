@@ -12,14 +12,13 @@ export function StateToggle<T>({
   onStateChange,
 }: StateToggleProps<T>) {
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex flex-wrap items-center gap-2">
       {states.map((state) => (
         <button
           key={String(state)}
           onClick={() => onStateChange(state)}
-          className={`${
-            state === activeState ? "" : "text-white/50 hover:text-white"
-          } relative rounded-full px-3 py-1 text-sm text-white transition`}
+          className={`${state === activeState ? "" : "text-white/50 hover:text-white"
+            } relative rounded-full px-3 py-1 text-sm text-white transition`}
           style={{ WebkitTapHighlightColor: "transparent" }}
         >
           {activeState === state && (
