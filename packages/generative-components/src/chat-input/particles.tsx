@@ -171,8 +171,8 @@ const particleConfig: Record<ChatInputStates, ParticleConfig> = {
     ],
     rotation: {
       transition: {
-        rotation: 360,
-        duration: 3,
+        rotation: 0,
+        duration: 0,
         ease: "linear",
         repeat: Infinity,
       },
@@ -217,7 +217,7 @@ const particleConfig: Record<ChatInputStates, ParticleConfig> = {
     rotation: {
       transition: {
         rotation: 360,
-        duration: 1,
+        duration: 1.5,
         ease: "easeInOut",
         repeat: Infinity,
       },
@@ -329,6 +329,7 @@ export const Particles = ({ state }: ParticlesProps) => {
   }, [state, controls1, controls2]);
 
   useEffect(() => {
+    rotationControl.stop();
     const animateRotation = () => {
       rotationControl
         .start({

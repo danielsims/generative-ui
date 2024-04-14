@@ -1,11 +1,10 @@
 import {
   GenerativeImage,
   GenerativeImageSkeleton,
+  getConfigValue,
 } from "generative-components";
 import { OpenAI } from "openai";
 import { z } from "zod";
-
-import { getConfigValue } from "../../config";
 
 interface ImageGenerationResponse {
   created: number;
