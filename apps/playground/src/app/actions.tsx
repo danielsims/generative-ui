@@ -1,43 +1,14 @@
 import { createAI, getMutableAIState, render } from "ai/rsc";
-import {
-  GenerativeImage,
-  GenerativeImageSkeleton,
-} from "generative-components";
+import { configureAIServices, generativeImage } from "generative-components";
 import { OpenAI } from "openai";
-import { z } from "zod";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-interface ImageGenerationResponse {
-  created: number;
-  data: [
-    {
-      url: string;
-      revised_prompt?: string;
-    },
-  ];
-}
-
-async function generateImage(prompt: string, model = "dall-e-3", count = 1) {
-  const response = await openai.images
-    .generate({
-      model,
-      prompt,
-      n: count,
-    })
-    .catch((error) => console.log(error))
-    .then((response) => response as ImageGenerationResponse);
-
-  const images = response.data;
-
-  return {
-    model,
-    prompt,
-    images,
-  };
-}
+configureAIServices({
+  OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+});
 
 async function submitUserMessage(userInput: string): Promise<object> {
   "use server";
@@ -86,55 +57,7 @@ async function submitUserMessage(userInput: string): Promise<object> {
       return <p>{content}</p>;
     },
     tools: {
-      generate_image: {
-        description: "Generate an image based on a description",
-        parameters: z
-          .object({
-            prompt: z
-              .string()
-              .describe("Description of the image to be generated"),
-            model: z
-              .string()
-              .describe(
-                "The model to use for image generation (dall-e-2, dall-e-3)",
-              )
-              .default("dall-e-3"),
-            count: z
-              .number()
-              .describe("Number of images to generate")
-              .default(1),
-          })
-          .required(),
-        render: async function* ({ prompt, count, model }) {
-          yield <GenerativeImageSkeleton />;
-
-          const images = (await generateImage(prompt, model, count)).images;
-
-          // Update the final AI state.
-          aiState.done([
-            ...aiState.get(),
-            {
-              role: "function",
-              name: "generate_image",
-              content: JSON.stringify({ prompt, images, count, model }),
-            },
-          ]);
-
-          return (
-            <div>
-              {Array.isArray(images) &&
-                images.map((image, index) => (
-                  <GenerativeImage
-                    key={index}
-                    src={image.url}
-                    alt={prompt}
-                    model={model}
-                  />
-                ))}
-            </div>
-          );
-        },
-      },
+      generativeImage,
     },
   });
 

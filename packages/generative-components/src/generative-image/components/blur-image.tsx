@@ -4,7 +4,7 @@ import type { ImageProps } from "next/image";
 import { useState } from "react";
 import Image from "next/image";
 
-import { cn } from "../index";
+import { cn } from "../../index";
 
 function BlurImage({
   src,

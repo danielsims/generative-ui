@@ -5,7 +5,7 @@
   "exports": {
     ".": "./src/index.ts",
     "./chat-input": "./src/chat-input/chat-input.tsx",
-    "./image": "./src/image/image.tsx"
+    "./generative-image": "./src/generative-image/index.tsx"
   },
   "license": "MIT",
   "scripts": {

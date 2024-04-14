@@ -1,6 +1,7 @@
 import type { ImageProps } from "next/image";
 
-import { cn } from "../index";
+import type { GenerativeImageStates } from "../config/types";
+import { cn } from "../../index";
 import BlurImage from "./blur-image";
 import Caption from "./caption";
 
@@ -10,9 +11,6 @@ interface GenerativeImageProps extends ImageProps {
   model: string;
   controlledState?: GenerativeImageStates;
 }
-
-export const generativeImageStates = ["loading", "default", "hover"] as const;
-export type GenerativeImageStates = (typeof generativeImageStates)[number];
 
 export function GenerativeImage({
   src,

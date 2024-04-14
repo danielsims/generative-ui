@@ -18,7 +18,9 @@
   "include": [
     ".",
     ".next/types/**/*.ts",
-    "../../packages/generative-components/src/**/*.ts"
+    "../../packages/generative-components/src/**/*.ts",
+    "../../packages/generative-components/src/generative-image/config/mocks.tsx",
+    "../../packages/generative-components/src/config.ts"
   ],
   "exclude": ["node_modules"]
 }
