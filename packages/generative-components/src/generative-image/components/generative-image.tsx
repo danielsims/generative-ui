@@ -20,7 +20,7 @@ export function GenerativeImage({
   ...rest
 }: GenerativeImageProps) {
   return (
-    <div className="shadow-inner-dark group relative aspect-square h-auto w-full overflow-hidden rounded-xl border border-[#252525] min-w-[50vw] md:min-w-[400px] md:w-[400px]">
+    <div className="shadow-inner-dark group relative aspect-square h-auto w-full min-w-[50vw] overflow-hidden rounded-xl border border-[#252525] md:w-[400px] md:min-w-[400px]">
       <BlurImage
         src={src}
         alt={alt}

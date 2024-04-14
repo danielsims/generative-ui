@@ -17,8 +17,9 @@ export function StateToggle<T>({
         <button
           key={String(state)}
           onClick={() => onStateChange(state)}
-          className={`${state === activeState ? "" : "text-white/50 hover:text-white"
-            } relative rounded-full px-3 py-1 text-sm text-white transition`}
+          className={`${
+            state === activeState ? "" : "text-white/50 hover:text-white"
+          } relative rounded-full px-3 py-1 text-sm text-white transition`}
           style={{ WebkitTapHighlightColor: "transparent" }}
         >
           {activeState === state && (
