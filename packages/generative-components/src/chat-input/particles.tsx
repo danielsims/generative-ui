@@ -25,13 +25,6 @@ interface Particle {
 }
 
 interface RotationConfig {
-  entry: {
-    rotation: number;
-    duration: number;
-    ease: string;
-    delay?: number;
-    repeat?: number;
-  };
   transition: {
     rotation: number;
     duration: number;
@@ -87,12 +80,6 @@ const particleConfig: Record<ChatInputStates, ParticleConfig> = {
       },
     ],
     rotation: {
-      entry: {
-        rotation: 0,
-        duration: 0,
-        delay: 0,
-        ease: "easeInOut",
-      },
       transition: {
         rotation: 360,
         ease: "linear",
@@ -138,12 +125,6 @@ const particleConfig: Record<ChatInputStates, ParticleConfig> = {
       },
     ],
     rotation: {
-      entry: {
-        rotation: 180,
-        duration: 6,
-        ease: "easeInOut",
-        delay: 0,
-      },
       transition: {
         rotation: 360,
         duration: 8,
@@ -189,15 +170,9 @@ const particleConfig: Record<ChatInputStates, ParticleConfig> = {
       },
     ],
     rotation: {
-      entry: {
+      transition: {
         rotation: 0,
         duration: 0,
-        ease: "easeInOut",
-        delay: 0,
-      },
-      transition: {
-        rotation: 360,
-        duration: 0.6,
         ease: "linear",
         repeat: Infinity,
       },
@@ -240,15 +215,9 @@ const particleConfig: Record<ChatInputStates, ParticleConfig> = {
       },
     ],
     rotation: {
-      entry: {
-        rotation: 360,
-        duration: 0.5,
-        ease: "easeInOut",
-        delay: 0,
-      },
       transition: {
         rotation: 360,
-        duration: 0.5,
+        duration: 1.5,
         ease: "easeInOut",
         repeat: Infinity,
       },
@@ -290,12 +259,6 @@ const particleConfig: Record<ChatInputStates, ParticleConfig> = {
       },
     ],
     rotation: {
-      entry: {
-        rotation: 0,
-        duration: 0,
-        ease: "linear",
-        delay: 0,
-      },
       transition: {
         rotation: 0,
         duration: 0,
@@ -366,20 +329,13 @@ export const Particles = ({ state }: ParticlesProps) => {
   }, [state, controls1, controls2]);
 
   useEffect(() => {
-    const animateRotation = async () => {
-      await rotationControl.start({
-        rotate: currentRotation + particleConfig[state].rotation.entry.rotation,
-        transition: {
-          duration: particleConfig[state].rotation.entry.duration,
-          ease: particleConfig[state].rotation.entry.ease,
-          delay: particleConfig[state].rotation.entry.delay,
-          repeat: particleConfig[state].rotation.entry.repeat,
-        },
-      });
-      rotationControl.stop();
+    rotationControl.stop();
+    const animateRotation = () => {
       rotationControl
         .start({
-          rotate: particleConfig[state].rotation.transition.rotation,
+          rotate:
+            currentRotation +
+            particleConfig[state].rotation.transition.rotation,
           transition: {
             duration: particleConfig[state].rotation.transition.duration,
             repeat: particleConfig[state].rotation.transition.repeat,
@@ -390,8 +346,8 @@ export const Particles = ({ state }: ParticlesProps) => {
       setCurrentRotation(currentRotation + 360);
     };
 
-    animateRotation().catch((error) => console.error(error));
-  }, [state, rotationControl, currentRotation]);
+    animateRotation();
+  }, [state]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="relative mx-3 mr-2 flex h-12 w-12 items-center justify-center blur-sm brightness-110">

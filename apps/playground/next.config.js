@@ -8,17 +8,17 @@ createJiti(fileURLToPath(import.meta.url))("./src/env");
 const config = {
   reactStrictMode: true,
 
-  /** Enables hot reloading for local packages without a build step */
-  transpilePackages: ["generative-components"],
-
   images: {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "source.unsplash.com",
+        hostname: "oaidalleapiprodscus.blob.core.windows.net",
       },
     ],
   },
+
+  /** Enables hot reloading for local packages without a build step */
+  transpilePackages: ["generative-components"],
 
   /** We already do linting and typechecking as separate tasks in CI */
   eslint: { ignoreDuringBuilds: true },
