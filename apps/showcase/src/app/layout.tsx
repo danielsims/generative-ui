@@ -7,6 +7,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Chat UI",
   description: "A collection of components for building chat interfaces.",
+  metadataBase: new URL("https://ui.danielsi.ms"),
 };
 
 export default function RootLayout({
