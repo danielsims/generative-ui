@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://ui.danielsi.ms"),
   openGraph: {
     url: "https://ui.danielsi.ms",
+    type: "website",
   },
 };
 
