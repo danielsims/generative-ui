@@ -5,9 +5,12 @@ import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Chat UI",
+  title: "Generative Components",
   description: "A collection of components for building chat interfaces.",
   metadataBase: new URL("https://ui.danielsi.ms"),
+  openGraph: {
+    url: "https://ui.danielsi.ms",
+  },
 };
 
 export default function RootLayout({
