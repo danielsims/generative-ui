@@ -6,7 +6,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Generative Components",
-  description: "A collection of components for building chat interfaces.",
+  description: "A collection of components for building generative interfaces.",
   metadataBase: new URL("https://ui.danielsi.ms"),
   openGraph: {
     url: "https://ui.danielsi.ms",

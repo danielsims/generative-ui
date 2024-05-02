@@ -9,3 +9,4 @@ export { cn };
 export * from "./config";
 export * from "./chat-input/chat-input";
 export * from "./generative-image/index";
+export * from "./generative-input/index";
