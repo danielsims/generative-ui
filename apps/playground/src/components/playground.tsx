@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useActions, useUIState } from "ai/rsc";
-import { ChatInput } from "generative-components";
+import { GenerativeInput } from "generative-components";
 
 import type { AI } from "~/app/actions";
 
@@ -50,7 +50,7 @@ export function Playground() {
         }}
       >
         <div className="fixed bottom-12 left-[50%] flex w-full max-w-2xl -translate-x-[50%] justify-center px-12">
-          <ChatInput
+          <GenerativeInput
             placeholder={"What do you need?"}
             value={inputValue}
             onChange={(event) => {

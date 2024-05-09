@@ -6,6 +6,9 @@ import { AI } from "./actions";
 
 import "./globals.css";
 
+import { ThemeProvider } from "~/components/theme-provider";
+import { ThemeToggle } from "~/components/theme-toggle";
+
 export const metadata: Metadata = {
   title: "Generative UI Playground",
   description: "Experiment with generative components.",
@@ -18,8 +21,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
-      <body className={`${GeistSans.className} bg-[#101010]`}>
-        <AI>{children}</AI>
+      <body className={`${GeistSans.className} bg-background`}>
+        <AI>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+            <ThemeToggle />
+          </ThemeProvider>
+        </AI>
       </body>
     </html>
   );

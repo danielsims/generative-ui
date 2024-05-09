@@ -43,6 +43,12 @@ export default {
       borderColor: {
         DEFAULT: "hsl(var(--border))",
       },
+      boxShadow: {
+        border:
+          "0 8px 48px rgb(238 238 238), 0 4px 8px rgb(66 71 70 / 5%), 0 0 1px rgb(66 71 70 / 32%)!important",
+        "dark:shadow-border":
+          "0 8px 48px rgb(15, 15, 15), 0 4px 8px rgb(115 115 135 / 15%), 0 0 1px 1px rgb(115 115 115 / 45%)!important",
+      },
     },
   },
 } satisfies Config;
