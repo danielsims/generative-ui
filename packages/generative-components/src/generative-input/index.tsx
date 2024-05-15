@@ -1,1 +1,2 @@
-export * from "../generative-input/components/generative-input";
+export * from "./components/generative-input";
+export * from "./config/types";

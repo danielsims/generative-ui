@@ -3,6 +3,8 @@
 import React, { useCallback, useState } from "react";
 import { Search } from "lucide-react";
 import { useDebouncedCallback } from "use-debounce";
+import { motion, AnimatePresence } from "framer-motion"
+import type { GenerativeInputStates } from "../../generative-input";
 
 interface GenerativeInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -10,11 +12,9 @@ interface GenerativeInputProps
   placeholder: string;
   controlledState?: GenerativeInputStates;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  onStateChange?: (state: string) => void;
+  onStateChange?: (state: GenerativeInputStates) => void;
 }
 
-const generativeInputStates = ["idle", "focus", "typing"] as const;
-type GenerativeInputStates = (typeof generativeInputStates)[number];
 
 export const GenerativeInput = ({
   value,
@@ -71,15 +71,42 @@ export const GenerativeInput = ({
   };
 
   return (
-    <div
-      className="flex items-center gap-2 rounded-full p-2 shadow-border"
-      data-state={currentState}
-    >
-      <Search className="h-6  w-6 text-zinc-400" />
-      <input
-        className="flex-1 bg-transparent text-foreground outline-none placeholder:text-zinc-400"
-        {...inputProps}
-      />
-    </div>
+    <>
+      {["idle", "focus", "typing"].includes(internalState) &&
+        <AnimatePresence>
+          <motion.div
+            layoutId="motion-element"
+            className="flex items-center gap-4 rounded-full py-2.5 px-3.5 shadow-border w-full max-w-[420px]"
+            data-state={currentState}
+          >
+            <Search className="h-5  w-5 text-foreground" strokeWidth={2} />
+            <input
+              className="flex-1 bg-transparent text-foreground outline-none placeholder:text-zinc-500 sm:text-sm "
+              {...inputProps}
+            />
+          </motion.div>
+        </AnimatePresence>
+      }
+      {internalState === "loading" &&
+        <div className="flex flex-col gap-4 items-center mx-auto">
+          <AnimatePresence>
+            <motion.div className="w-[400px] shadow-border px-4 py-8 rounded-xl flex flex-col gap-2">
+              <motion.span className="text-sm text-emerald-400">generating image</motion.span>
+              <motion.span className="text-lg">Abstract GLSL Shader</motion.span>
+            </motion.div>
+          </AnimatePresence>
+          <AnimatePresence>
+            <motion.button
+              layoutId="motion-element"
+              className="flex items-center gap-2 rounded-full py-2 px-3 shadow-border w-fit overflow-hidden cursor-pointer"
+              data-state={currentState}
+              onClick={() => setInternalState("idle")}
+            >
+              <Search className="h-3.5 w-3.5 text-foreground" strokeWidth={2} />
+            </motion.button>
+          </AnimatePresence>
+        </div>
+      }
+    </>
   );
 };

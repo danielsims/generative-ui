@@ -5,7 +5,6 @@ import { GeistSans } from "geist/font/sans";
 import { AI } from "./actions";
 
 import "./globals.css";
-
 import { ThemeProvider } from "~/components/theme-provider";
 import { ThemeToggle } from "~/components/theme-toggle";
 
