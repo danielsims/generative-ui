@@ -76,7 +76,7 @@ export const GenerativeInput = ({
         <AnimatePresence>
           <motion.div
             layoutId="motion-element"
-            className="flex items-center gap-4 rounded-full py-2.5 px-3.5 shadow-border w-full max-w-[420px]"
+            className="flex items-center gap-4 rounded-full py-2.5 px-3.5 shadow-border w-full max-w-[420px] bg-background"
             data-state={currentState}
           >
             <Search className="h-5  w-5 text-foreground" strokeWidth={2} />
