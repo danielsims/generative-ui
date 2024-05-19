@@ -47,8 +47,7 @@ export default function Home() {
 
           <div className="flex w-full flex-row-reverse items-center justify-end gap-4 tracking-wide md:w-fit md:flex-row">
             <span className="text-xs font-light">
-              Built by{" "}
-              <Link href={"https://twitter.com/danielsims"}>danielsims</Link>
+              Built by <Link href={"https://x.com/danielsims"}>danielsims</Link>
             </span>
             <Link href={"https://github.com/danielsims/generative-ui"}>
               <FaGithub className="fill-white text-white" size={24} />
