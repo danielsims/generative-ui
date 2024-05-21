@@ -21,7 +21,7 @@ export default function Home() {
 
   return (
     <main className="dark flex h-screen min-h-screen flex-col items-center justify-center bg-[#101010] p-8">
-      <div className="min-h-48 w-full max-w-2xl">
+      <div className="min-h-56 w-full max-w-2xl">
         <form
           onSubmit={(event) => onSubmit(event)}
           className="flex h-full w-full items-center justify-center"

@@ -88,7 +88,9 @@ export const GenerativeInput = forwardRef<
               className="flex w-full max-w-[420px] items-center gap-4 rounded-full bg-background px-3.5 py-2.5 shadow-border"
               data-state={currentState}
             >
-              <Search className="h-5  w-5 text-foreground" strokeWidth={2} />
+              <motion.div layoutId="motion-icon">
+                <Search className="h-5  w-5 text-foreground" strokeWidth={2} />
+              </motion.div>
               <input
                 className="flex-1 bg-transparent text-foreground outline-none placeholder:text-zinc-500 sm:text-sm"
                 {...inputProps}
@@ -100,7 +102,13 @@ export const GenerativeInput = forwardRef<
         {internalState === "loading" && (
           <div className="relative mx-auto flex flex-col items-center gap-4">
             <AnimatePresence>
-              <motion.div className="flex w-[400px] flex-col gap-2 rounded-xl bg-background px-4 py-8 shadow-border">
+              <motion.div
+                className="mt-[100px] flex w-[400px] flex-col gap-2 rounded-xl bg-background px-4 py-8 opacity-0 shadow-border"
+                animate={{
+                  y: internalState === "loading" ? -100 : 0,
+                  opacity: internalState === "loading" ? 1 : 0,
+                }}
+              >
                 <motion.span className="text-sm text-emerald-400">
                   generating image
                 </motion.span>
@@ -112,14 +120,16 @@ export const GenerativeInput = forwardRef<
             <AnimatePresence>
               <motion.button
                 layoutId="motion-element"
-                className="absolute top-32 flex w-fit cursor-pointer items-center gap-2 overflow-hidden rounded-full bg-background px-3 py-2 shadow-border"
+                className="absolute top-32 flex w-[120px] cursor-pointer items-center gap-2 overflow-hidden rounded-full bg-background px-3 py-2 shadow-border"
                 data-state={currentState}
                 onClick={() => setInternalState("idle")}
               >
-                <Search
-                  className="h-3.5 w-3.5 text-foreground"
-                  strokeWidth={2}
-                />
+                <motion.div layoutId="motion-icon">
+                  <Search
+                    className="h-3.5 w-3.5 text-foreground"
+                    strokeWidth={2}
+                  />
+                </motion.div>
               </motion.button>
             </AnimatePresence>
           </div>
