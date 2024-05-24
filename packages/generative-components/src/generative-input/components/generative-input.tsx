@@ -103,9 +103,9 @@ export const GenerativeInput = forwardRef<
           <div className="relative mx-auto flex flex-col items-center gap-4">
             <AnimatePresence>
               <motion.div
-                className="mt-[100px] flex w-[400px] flex-col gap-2 rounded-xl bg-background px-4 py-8 opacity-0 shadow-border"
+                className="mt-6 flex w-[400px] flex-col gap-2 rounded-xl bg-background px-4 py-8 opacity-0 shadow-border"
                 animate={{
-                  y: internalState === "loading" ? -100 : 0,
+                  y: internalState === "loading" ? -24 : 0,
                   opacity: internalState === "loading" ? 1 : 0,
                 }}
               >
